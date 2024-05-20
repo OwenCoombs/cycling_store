@@ -17,9 +17,15 @@ Including another URLconf
 
 from django.urls import path, include
 from rest_framework import routers
-from cycling_inv_app import *
+from cycling_inv_app.views import *
+
 
 router = routers.DefaultRouter()
+
+router.register(r'vehicles', VehicleViewSet)
+router.register(r'customer', CustomerViewSet)
+router.register(r'customer order', CustomerOrderViewSet)
+
 
 urlpatterns = [
     path('', include(router.urls))
