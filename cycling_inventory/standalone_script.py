@@ -24,12 +24,12 @@ def display_menu():
     print("1. Add Vehicle")  # Option to add a new vehicle
     print("2. Update Vehicle")  
     print("3. Delete Vehicle")  
-    print("4. Show All Vehicles")  
+    print("4. Show All Vehicles") 
     print("5. Exit") 
 
 # Function to create a new vehicle object and add it to the database
 def create_vehicle(type, number_in_stock):
-    vehicle = Vehicle.objects.create(type=type, number_in_stock=number_in_stock)
+    vehicle = Vehicle.objects.create(type=type, number_in_stock=number_in_stock) # Assigns the 'number_in_stock' variable to the 'number_in_stock' field of the Vehicle model.
     print("Vehicle added successfully.")
     return vehicle
 
@@ -54,10 +54,13 @@ def update_vehicle():
 
 # Function to delete an existing vehicle
 def delete_vehicle():
-    vehicle_id = int(input("Enter vehicle ID to delete: "))  # id to delete
-    vehicle = Vehicle.objects.get(id=vehicle_id)  # grabbing vehicle from data
-    vehicle.delete()  # deletes vehicle
-    print(f"Vehicle with ID {vehicle_id} deleted successfully.")  # conf msg
+    try:
+        vehicle_id = int(input("Enter vehicle ID to delete: "))  # id to delete
+        vehicle = Vehicle.objects.get(id=vehicle_id)  # grabbing vehicle from data
+        vehicle.delete()  # deletes vehicle
+        print(f"Vehicle with ID {vehicle_id} deleted successfully.")  # conf msg
+    except: 
+        print('ID does not exist')
 
 # Function to show all vehicles stored in the database
 def show_all_vehicles():
@@ -87,10 +90,8 @@ def main():
         else:
             print("Invalid choice. Please enter a number between 1 and 5.")  # Print error message for invalid choices
 
-if __name__ == "__main__":
-    main()  # Call the main function to start the program
 
-
+main()  # Call the main function to start the program
 
 
 
